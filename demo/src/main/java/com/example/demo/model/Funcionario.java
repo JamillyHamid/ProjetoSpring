@@ -16,13 +16,13 @@ public class Funcionario extends Pessoa{
     @Column(nullable = false)
     @Min(value = 1)
     private double salario;
-    private String vendas;
+    private int vendas;
 
 
     public Funcionario() {
     }
 
-    public Funcionario(String name, String cpf, int idade, String endereco, String celular, String cargo, double salario, String vendas) {
+    public Funcionario(String name, String cpf, int idade, String endereco, String celular, String cargo, double salario, int vendas) {
         super(name, cpf, idade, endereco, celular);
         this.cargo = cargo;
         this.salario = salario;
@@ -37,11 +37,11 @@ public class Funcionario extends Pessoa{
         this.IdFuncionario = IdFuncionario;
     }
 
-    public String getCargo() {
+    public int getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(int cargo) {
         this.cargo = cargo;
     }
 
