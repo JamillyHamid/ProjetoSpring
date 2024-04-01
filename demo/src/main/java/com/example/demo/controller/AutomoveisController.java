@@ -51,4 +51,14 @@ public class AutomoveisController {
     public int qtdAutomoveis() {
         return automoveisService.qtdAutomoveis();
     }
+
+    @GetMapping("/{preco}")
+    public List<Automoveis> listarAutomoveisPreco (@PathVariable double preco){
+        return automoveisService.listarAutomoveisPreco(preco);
+    }
+
+    @GetMapping("/{marca}")
+    public List<Automoveis> litarAutomoveisMarca (@PathVariable String marca){
+        return automoveisService.listarAutomoveisMarca(marca);
+    }
 }
