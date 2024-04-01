@@ -22,14 +22,11 @@ public class AutomoveisService {
     }
 
     public Automoveis atualizarAutomovel(Long Id, Automoveis automoveis) {
-        //verificar se o id é valido
         if(automoveisRepository.existsById(Id)) {
-            //atualizar o objeto na base
             automoveis.setIdAutomovel(Id);
             return automoveisRepository.save(automoveis);
         }
         return null;
-        // não realiza nenhuma alteração
     }
 
     public boolean deletarAutomovel(Long id) {
@@ -43,4 +40,27 @@ public class AutomoveisService {
     public int qtdAutomoveis () {
         return automoveisRepository.findAll().size();
     }
+
+     public List<Automoveis> listarAutomoveisPreco (double preco){
+        List<Automoveis> automoveisList = automoveisRepository.findAll();
+        List <Automoveis> automoveisPorPreco = new ArrayList<>();
+        for (Automoveis automoveis : automoveisList){
+            if (automoveis.getPreco() < preco){
+                automoveisPorPreco.add(automoveis);
+            }
+        }
+        return automoveisPorPreco;
+    }
+
+    public List<Automoveis> listarAutomoveisMarca (String marca){
+        List<Automoveis> automoveisList = automoveisRepository.findAll();
+        List <Automoveis> automoveisPorMarca = new ArrayList<>();
+        for (Automoveis automoveis : automoveisList){
+            if (automoveis.getMarca().equalsIgnoreCase(marca)){
+                automoveisPorMarca.add(automoveis);
+            }
+        }
+        return automoveisPorMarca;
+    }
+    
 }
