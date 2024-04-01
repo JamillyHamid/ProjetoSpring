@@ -25,14 +25,11 @@ public class FuncionarioService implements PessoaService<Funcionario>{
 
     @Override
     public Funcionario atualizar(Funcionario funcionario, Long id) {
-        //verificar se o id é valido
         if(funcionarioRepository.existsById(id)) {
-            //atualizar o objeto na base
             funcionario.setIdFuncionario(id);
             return funcionarioRepository.save(funcionario);
         }
         return null;
-        // não realiza nenhuma alteração
     }
 
     @Override
@@ -44,5 +41,14 @@ public class FuncionarioService implements PessoaService<Funcionario>{
         return false;
     }
 
-
+    public List<Funcionario> listarFuncionariosCargo(String cargo){
+        List<Funcionario> funcionarioList = funcionarioRepository.findAll();
+        List<Funcionario> funcionariosPorCargo = new ArrayList<>();
+        for (Funcionario funcionario : funcionarioList){
+            if (funcionario.getCargo().equals(cargo)){
+                funcionariosPorCargo.add(funcionario);
+            }
+        }
+        return funcionariosPorCargo;
+    }
 }
