@@ -8,13 +8,16 @@ import jakarta.validation.constraints.NotNull;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Automoveis {
 
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long IdAutomovel;
     @NotNull
     private String marca;
     @NotNull
     private String modelo;
+    @NotNull
+    private String tipoCambio;
+    @NotNull
     private String cor;
     @NotNull
     @Column(nullable = false)
@@ -30,10 +33,11 @@ public class Automoveis {
     public Automoveis() {
     }
 
-    public Automoveis(long idAutomovel, String marca, String modelo, String cor, double preco, String combustivel, int ano, int qtd) {
-        IdAutomovel = idAutomovel;
+
+    public Automoveis(String marca, String modelo,String tipoCambio, String cor, double preco, String combustivel, int ano, int qtd) {
         this.marca = marca;
         this.modelo = modelo;
+        this.tipoCambio = tipoCambio;
         this.cor = cor;
         this.preco = preco;
         this.combustivel = combustivel;
@@ -63,6 +67,14 @@ public class Automoveis {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public String getTipoCambio() {
+        return tipoCambio;
+    }
+
+    public void setTipoCambio(String tipoCambio) {
+        this.tipoCambio = tipoCambio;
     }
 
     public String getCor() {
