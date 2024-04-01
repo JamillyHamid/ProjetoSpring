@@ -10,7 +10,7 @@ public class Automoveis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long IdAutomovel;
+    private Long IdAutomovel;
     @NotNull
     private String marca;
     @NotNull
@@ -45,11 +45,11 @@ public class Automoveis {
         this.qtd = qtd;
     }
 
-    public long getIdAutomovel() {
+    public Long getIdAutomovel() {
         return IdAutomovel;
     }
 
-    public void setIdAutomovel(long idAutomovel) {
+    public void setIdAutomovel(Long idAutomovel) {
         IdAutomovel = idAutomovel;
     }
 
