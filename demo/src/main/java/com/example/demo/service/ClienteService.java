@@ -41,4 +41,15 @@ public class ClienteService implements PessoaService<Cliente>{
         }
         return false;
     }
+
+    public List<Cliente> listarCliente(String cpf){
+        List<Cliente> clientesList = clienteRepository.findAll();
+        List<Cliente> clienteList = new ArrayList<>();
+        for (Cliente cliente : clientesList){
+            if(cliente.getCpf().equalsIgnoreCase(cpf)){
+                clienteList.add(cliente);
+            }
+        }
+        return clienteList;
+    }
 }
