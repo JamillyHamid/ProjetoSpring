@@ -11,9 +11,9 @@ import jakarta.validation.constraints.Size;
 public class Cliente extends Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long IdCliente;
+    private Long IdCliente;
     @NotNull
-    @Size(min = 11, max = 12)
+    @Size(min = 11, max = 11)
     private String cnh;
     private String email;
 
@@ -27,11 +27,11 @@ public class Cliente extends Pessoa {
 
     }
 
-    public long getIdCliente() {
+    public Long getIdCliente() {
         return IdCliente;
     }
 
-    public void setIdCliente(long idCliente) {
+    public void setIdCliente(Long idCliente) {
         IdCliente = idCliente;
     }
 
