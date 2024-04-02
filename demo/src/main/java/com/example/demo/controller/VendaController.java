@@ -6,6 +6,7 @@ import com.example.demo.repository.VendaRepository;
 import com.example.demo.service.VendaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,12 +50,12 @@ public class VendaController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensagem);
     }
 
-    @GetMapping("/{data}")
+    @GetMapping("/listar-por-data/{data}")
     public List<Venda> listarVendasPorData(@PathVariable LocalDate data){
         return vendaService.listarVendasData(data);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/listar-por-id/{id}")
     public List<Venda> listarVendasPorFuncionario(@PathVariable Long id){
         return vendaService.listarVendasFuncionario(id);
     }

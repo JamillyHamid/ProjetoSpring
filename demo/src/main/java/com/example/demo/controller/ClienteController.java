@@ -18,28 +18,26 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
-    @PostMapping
+    @PostMapping("/add")
     public Cliente adicionarCliente(@Valid @RequestBody Cliente cliente) {
         return clienteService.adicionar(cliente);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> atualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
-        //return funcionarioService.atualizar(id, funcionario);
         if(clienteService.atualizar(cliente, id) == null) {
             String mensagem = "O id informado não existe na base de dados";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensagem);
-            //return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(cliente);
     }
 
     @GetMapping
-    public List<Cliente> listarCliente() {
+    public List<Cliente> listarClientes() {
         return clienteService.listar();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deletarCliente(@PathVariable Long id) {
         if(clienteService.deletar(id)) {
             String mensagem = "O id " + id + " foi excluído com sucesso.";
@@ -49,7 +47,7 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensagem);
     }
 
-    @GetMapping("/{cpf}")
+    @GetMapping("/listar-por-cpf/{cpf}")
     public List<Cliente> listarCliente(@PathVariable String cpf){
         return clienteService.listarCliente(cpf);
     }

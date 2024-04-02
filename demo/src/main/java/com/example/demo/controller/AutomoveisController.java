@@ -19,12 +19,12 @@ public class AutomoveisController {
     @Autowired
     AutomoveisService automoveisService;
 
-    @PostMapping
+    @PostMapping("/add")
     public Automoveis adicionarAutomovel(@Valid @RequestBody Automoveis automoveis) {
         return automoveisService.adicionarAutomovel(automoveis);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> atualizarAutomovel(@PathVariable Long id, @RequestBody Automoveis automoveis) {
         if(automoveisService.atualizarAutomovel(id, automoveis) == null) {
             String mensagem = "O id informado não existe na base de dados";
@@ -38,7 +38,7 @@ public class AutomoveisController {
         return automoveisService.listarAutomoveis();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deletarAutomovel(@PathVariable Long id) {
         if(automoveisService.deletarAutomovel(id)) {
             String mensagem = "O id " + id + " foi excluído com sucesso.";
@@ -47,17 +47,13 @@ public class AutomoveisController {
         String mensagem = "O id informado não existe na base de dados";
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensagem);
     }
-    @GetMapping("/qtd-automoveis")
-    public int qtdAutomoveis() {
-        return automoveisService.qtdAutomoveis();
-    }
 
-    @GetMapping("/{preco}")
+    @GetMapping("/listar-por-preco/{preco}")
     public List<Automoveis> listarAutomoveisPreco (@PathVariable double preco){
         return automoveisService.listarAutomoveisPreco(preco);
     }
 
-    @GetMapping("/{marca}")
+    @GetMapping("/listar-por-marca/{marca}")
     public List<Automoveis> litarAutomoveisMarca (@PathVariable String marca){
         return automoveisService.listarAutomoveisMarca(marca);
     }
