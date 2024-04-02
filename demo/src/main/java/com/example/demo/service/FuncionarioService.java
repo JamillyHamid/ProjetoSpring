@@ -1,10 +1,15 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Automoveis;
+import com.example.demo.model.Cliente;
 import com.example.demo.model.Funcionario;
+import com.example.demo.model.Venda;
 import com.example.demo.repository.FuncionarioRepository;
+import com.example.demo.repository.VendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,13 +47,13 @@ public class FuncionarioService implements PessoaService<Funcionario>{
     }
 
     public List<Funcionario> listarFuncionariosCargo(String cargo){
-        List<Funcionario> funcionarioList = funcionarioRepository.findAll();
-        List<Funcionario> funcionariosPorCargo = new ArrayList<>();
-        for (Funcionario funcionario : funcionarioList){
+        List<Funcionario> funcionariosList = funcionarioRepository.findAll();
+        List<Funcionario> funcionarioPorCargo = new ArrayList<>();
+        for (Funcionario funcionario : funcionariosList){
             if (funcionario.getCargo().equals(cargo)){
-                funcionariosPorCargo.add(funcionario);
+                funcionarioPorCargo.add(funcionario);
             }
         }
-        return funcionariosPorCargo;
+        return funcionarioPorCargo;
     }
 }

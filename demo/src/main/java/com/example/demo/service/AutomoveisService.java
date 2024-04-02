@@ -5,6 +5,7 @@ import com.example.demo.repository.AutomoveisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,11 +38,8 @@ public class AutomoveisService {
         return false;
     }
 
-    public int qtdAutomoveis () {
-        return automoveisRepository.findAll().size();
-    }
 
-     public List<Automoveis> listarAutomoveisPreco (double preco){
+    public List<Automoveis> listarAutomoveisPreco (double preco){
         List<Automoveis> automoveisList = automoveisRepository.findAll();
         List <Automoveis> automoveisPorPreco = new ArrayList<>();
         for (Automoveis automoveis : automoveisList){
@@ -56,11 +54,10 @@ public class AutomoveisService {
         List<Automoveis> automoveisList = automoveisRepository.findAll();
         List <Automoveis> automoveisPorMarca = new ArrayList<>();
         for (Automoveis automoveis : automoveisList){
-            if (automoveis.getMarca().equalsIgnoreCase(marca)){
+            if (automoveis.getMarca().equals(marca)){
                 automoveisPorMarca.add(automoveis);
             }
         }
         return automoveisPorMarca;
     }
-    
 }

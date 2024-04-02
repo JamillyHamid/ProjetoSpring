@@ -1,9 +1,12 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Automoveis;
 import com.example.demo.model.Funcionario;
 import com.example.demo.model.Venda;
+import com.example.demo.repository.AutomoveisRepository;
 import com.example.demo.repository.FuncionarioRepository;
 import com.example.demo.repository.VendaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,10 @@ import java.util.List;
 public class VendaService {
     @Autowired
     VendaRepository vendaRepository;
+    @Autowired
+    FuncionarioRepository funcionarioRepository;
+    @Autowired
+    AutomoveisRepository automoveisRepository;
 
     public List<Venda> listar() {
         return vendaRepository.findAll();
@@ -45,7 +52,7 @@ public class VendaService {
         List<Venda> vendasList = vendaRepository.findAll();
         List<Venda> vendasPorData = new ArrayList<>();
         for (Venda venda : vendasList){
-            if (venda.getData().equals(data)){
+            if (venda.getData().isEqual(data)){
                 vendasPorData.add(venda);
             }
         }
@@ -63,13 +70,23 @@ public class VendaService {
         return vendasPorFuncionario;
     }
 
+    @Transactional
     public String registrarVenda(Long id){
-        Funcionario funcionario = new Funcionario();
         List<Venda> vendaList = vendaRepository.findAll();
+
         for(Venda venda : vendaList){
             if (venda.getIdVenda().equals(id)){
+                Funcionario funcionario = funcionarioRepository.findById(venda.getIdFuncionario()).orElse(null);
+                Automoveis automoveis = automoveisRepository.findById(venda.getIdAutomovel()).orElse(null);
                 if (venda.getIdFuncionario().equals(funcionario.getIdFuncionario())){
-                    funcionario.setVendas(+1);
+                    int f = funcionario.getVendas();
+                    funcionario.setVendas(f+1);
+                    funcionarioRepository.save(funcionario);
+                }
+                if (venda.getIdAutomovel().equals(automoveis.getIdAutomovel())){
+                    int a = automoveis.getQtd();
+                    automoveis.setQtd(a-1);
+                    automoveisRepository.save(automoveis);
                 }
             }
         }
