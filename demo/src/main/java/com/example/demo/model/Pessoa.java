@@ -4,19 +4,21 @@ import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @MappedSuperclass
 public abstract class Pessoa {
 
     @NotNull
     private String name;
-    @NotNull(message = "Campo cpf não pode ser nulo.")
+    @NotNull
     @Column(nullable = false)
     @Size(min = 11, max = 14)
     private String cpf;
+    @NotNull
     private int idade;
     private String endereco;
-    @Size(min = 11, max = 15)
+    @Size(min = 11, max = 14)
     private String celular;
 
     public Pessoa() {

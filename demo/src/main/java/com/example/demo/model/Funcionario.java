@@ -37,11 +37,11 @@ public class Funcionario extends Pessoa{
         this.IdFuncionario = IdFuncionario;
     }
 
-    public int getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(int cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
@@ -53,12 +53,13 @@ public class Funcionario extends Pessoa{
         this.salario = salario;
     }
 
-    public String getVendas() {
+    public int getVendas() {
         return vendas;
     }
 
-    public void setVendas(String vendas) {
+    public void setVendas(int vendas) {
         this.vendas = vendas;
     }
+
 
 }

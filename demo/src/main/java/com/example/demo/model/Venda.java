@@ -18,7 +18,7 @@ public class Venda {
     private Long idCliente;
     @NotNull
     private Long idAutomovel;
-    @NotNull
+
     private LocalDate data = LocalDate.now();
     @NotNull
     private double preco;
@@ -26,11 +26,10 @@ public class Venda {
     public Venda() {
     }
 
-    public Venda(Long idFuncionario, Long idCliente, Long idAutomovel, LocalDate data, double preco) {
+    public Venda(Long idFuncionario, Long idCliente, Long idAutomovel, double preco) {
         this.idFuncionario = idFuncionario;
         this.idCliente = idCliente;
         this.idAutomovel = idAutomovel;
-        this.data = data;
         this.preco = preco;
     }
 

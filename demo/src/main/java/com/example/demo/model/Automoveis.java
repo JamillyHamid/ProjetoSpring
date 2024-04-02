@@ -3,6 +3,7 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -32,7 +33,6 @@ public class Automoveis {
 
     public Automoveis() {
     }
-
 
     public Automoveis(String marca, String modelo,String tipoCambio, String cor, double preco, String combustivel, int ano, int qtd) {
         this.marca = marca;

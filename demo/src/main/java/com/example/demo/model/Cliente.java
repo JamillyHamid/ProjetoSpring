@@ -1,11 +1,9 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 public class Cliente extends Pessoa {
@@ -51,4 +49,5 @@ public class Cliente extends Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
